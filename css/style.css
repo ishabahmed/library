@@ -27,7 +27,7 @@ body {
   gap: 10px;
 }
 
-.header button {
+button {
   padding: 0.5rem 1rem;
   border: 1px solid #222;
   border-radius: 5px;
@@ -35,7 +35,7 @@ body {
   cursor: pointer;
 }
 
-.header button:hover {
+button:hover {
   background-color: #222;
   color: #f0f0f0;
 }
@@ -43,4 +43,86 @@ body {
 .divider {
   margin: 3rem 0;
   background-color: #222;
+}
+
+/* grid of cards */
+.books {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #222;
+  border-radius: 5px;
+}
+
+.book__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.book__author {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #7d7d7d;
+  margin-bottom: 0.5rem;
+}
+
+.book__read {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.book__read--read {
+  border-color: #88b248;
+  color: #88b248;
+}
+
+.book__read--read:hover {
+  background-color: #88b248;
+  color: #f0f0f0;
+}
+
+.book__read--unread {
+  border-color: #a6a6a6;
+  color: #a6a6a6;
+}
+
+.book__read--unread:hover {
+  background-color: #a6a6a6;
+  color: #f0f0f0;
+}
+
+.book__no-books {
+  font-size: 1.5rem;
+  font-weight: 700;
+  grid-column: 2 / 3;
+}
+
+.book__help-text {
+  color: #7d7d7d;
+  grid-column: 2 / 3;
+}
+
+.book__delete {
+  margin-top: auto;
+  align-self: flex-end;
+  color: #ee7272;
+  border-color: #ee7272;
+}
+
+.book__delete:hover {
+  background-color: #ee7272;
+  color: #f0f0f0;
 }
