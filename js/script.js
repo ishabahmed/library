@@ -106,4 +106,43 @@ function displayLibrary() {
     }
 }
 
+/* when the add book button is clicked, make the modal visible */
+const addBookButton = document.querySelector('.header__button');
+addBookButton.addEventListener('click', () => {
+    const modal = document.querySelector('.modal');
+    modal.classList.toggle('modal--visible');
+});
+
+/* when the modal is clicked, make it invisible */
+const modal = document.querySelector('.modal');
+modal.addEventListener('click', () => {
+    modal.classList.toggle('modal--visible');
+});
+
+/* when the modal content is clicked, don't make the modal invisible */
+const modalContent = document.querySelector('.modal__content');
+modalContent.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
+/* when the modal form is submitted, add the book to the library and display the library */
+const modalForm = document.querySelector('.modal__form');
+modalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const title = document.querySelector('.modal__form-title').value;
+    const author = document.querySelector('.modal__form-author').value;
+    const pages = document.querySelector('.modal__form-pages').value;
+    const read = document.querySelector('.modal__form-read').checked;
+
+    const book = new Book(title, author, pages, read);
+    library.addBook(book);
+    displayLibrary();
+
+    modal.classList.toggle('modal--visible');
+});
+
 displayLibrary();
+
+
+
