@@ -1,0 +1,46 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #222;
+}
+
+.container {
+  margin: 2.5rem 15rem 2.5rem 15rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  gap: 10px;
+}
+
+.header button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #222;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.header button:hover {
+  background-color: #222;
+  color: #f0f0f0;
+}
+
+.divider {
+  margin: 3rem 0;
+  background-color: #222;
+}
