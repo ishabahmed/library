@@ -33,19 +33,6 @@ class Library {
     }
 }
 
-const library = new Library();
-
-const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
-const book2 = new Book('The Fellowship of the Ring', 'J.R.R. Tolkien', 423, false);
-const book3 = new Book('The Two Towers', 'J.R.R. Tolkien', 352, true);
-const book4 = new Book('The Return of the King and Stuff', 'J.R.R. Tolkien', 416, false);
-
-library.addBook(book1);
-library.addBook(book2);
-library.addBook(book3);
-library.addBook(book4);
-
-
 function displayLibrary() {
     const booksDiv = document.querySelector('.books');
     booksDiv.innerHTML = '';
@@ -94,6 +81,7 @@ function displayLibrary() {
 
             const deleteButton = document.createElement('button');
             deleteButton.classList.add('book__delete');
+            deleteButton.classList.add('cancel-button');
             deleteButton.textContent = 'Delete';
             deleteButton.addEventListener('click', () => {
                 library.removeBook(book);
@@ -113,18 +101,6 @@ addBookButton.addEventListener('click', () => {
     modal.classList.toggle('modal--visible');
 });
 
-/* when the modal is clicked, make it invisible */
-const modal = document.querySelector('.modal');
-modal.addEventListener('click', () => {
-    modal.classList.toggle('modal--visible');
-});
-
-/* when the modal content is clicked, don't make the modal invisible */
-const modalContent = document.querySelector('.modal__content');
-modalContent.addEventListener('click', (e) => {
-    e.stopPropagation();
-});
-
 /* when the modal form is submitted, add the book to the library and display the library */
 const modalForm = document.querySelector('.modal__form');
 modalForm.addEventListener('submit', (e) => {
@@ -133,16 +109,59 @@ modalForm.addEventListener('submit', (e) => {
     const title = document.querySelector('.modal__form-title').value;
     const author = document.querySelector('.modal__form-author').value;
     const pages = document.querySelector('.modal__form-pages').value;
-    const read = document.querySelector('.modal__form-read').checked;
+    const read = document.querySelector('.modal__form-read-input').checked;
+
+    const modalFormError = document.querySelector('.modal__form-error');
+
+    /* if title and author in library, then add a span after the h2 saying that the book already exists */
+    if (library.books.some(book => book.title === title && book.author === author)) {
+        if (!modalFormError) {
+            const modalFormTitle = document.querySelector('.modal__form-title');
+
+            const error = document.createElement('span');
+            error.classList.add('modal__form-error');
+            error.textContent = 'This book already exists in your library!';
+            modalFormTitle.parentNode.insertBefore(error, modalFormTitle.nextSibling);
+        }
+        return;
+    }
 
     const book = new Book(title, author, pages, read);
     library.addBook(book);
+
+    if (modalFormError) {
+        modalFormError.remove();
+    }
+
+    modalForm.reset();
     displayLibrary();
 
     modal.classList.toggle('modal--visible');
 });
 
+const modalCancelButton = document.querySelector('.modal__form-cancel');
+modalCancelButton.addEventListener('click', () => {
+    modal.classList.toggle('modal--visible');
+
+    const modalFormError = document.querySelector('.modal__form-error');
+    if (modalFormError) {
+        modalFormError.remove();
+    }
+
+    modalForm.reset();
+});
+
+/* when the modal is clicked, make it invisible */
+const modal = document.querySelector('.modal');
+modal.addEventListener('click', () => {
+    modal.classList.toggle('modal--visible');
+    modalForm.reset();
+});
+
+/* when the modal content is clicked, don't make the modal invisible */
+const modalContent = document.querySelector('.modal__content');
+modalContent.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
 displayLibrary();
-
-
-

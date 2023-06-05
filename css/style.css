@@ -27,6 +27,7 @@ body {
   gap: 10px;
 }
 
+.modal__form-submit,
 button {
   padding: 0.5rem 1rem;
   border: 1px solid #222;
@@ -35,6 +36,7 @@ button {
   cursor: pointer;
 }
 
+.modal__form-submit:hover,
 button:hover {
   background-color: #222;
   color: #f0f0f0;
@@ -115,14 +117,14 @@ button:hover {
   grid-column: 2 / 3;
 }
 
-.book__delete {
+.cancel-button {
   margin-top: auto;
   align-self: flex-end;
   color: #ee7272;
   border-color: #ee7272;
 }
 
-.book__delete:hover {
+.cancel-button:hover {
   background-color: #ee7272;
   color: #f0f0f0;
 }
@@ -135,10 +137,14 @@ button:hover {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   visibility: hidden;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
 .modal--visible {
   visibility: visible;
+  opacity: 1;
   transform: scale(1.1);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -148,8 +154,28 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: #f0f0f0;
   padding: 1rem 1.5rem;
   width: 24rem;
   border-radius: 0.5rem;
 }
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal__form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+

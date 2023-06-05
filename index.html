@@ -32,9 +32,14 @@
         <input class="modal__form-title" type="text" placeholder="Title" required>
         <input class="modal__form-author" type="text" placeholder="Author" required>
         <input class="modal__form-pages" type="number" placeholder="Pages" required>
-        <input class="modal__form-read" type="checkbox" placeholder="Read">
-        <input class="modal__form-submit" type="submit" value="Add Book">
-        <button class="modal__form-cancel">Cancel</button>
+        <div class="modal__form-read">
+          <label class="modal__form-read-label" for="read">Read?</label>
+          <input class="modal__form-read-input" type="checkbox" placeholder="Read">
+        </div>
+        <div class="modal__form-buttons">
+          <input class="modal__form-submit" type="submit" value="Add Book">
+          <button class="modal__form-cancel cancel-button">Cancel</button>
+        </div>
       </form>
     </div>
   </div>
